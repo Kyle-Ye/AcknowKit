@@ -1,5 +1,5 @@
 //
-//  AcknowLibraryView.swift
+//  AcknowLibrarySection.swift
 //
 //
 //  Created by Kyle on 2023/3/26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct AcknowLibraryView: View {
+public struct AcknowLibrarySection: View {
     public let library: AcknowLibrary
 
     public init(library: AcknowLibrary) {
@@ -15,26 +15,21 @@ public struct AcknowLibraryView: View {
     }
 
     public var body: some View {
-        List {
-            Section {
-                ForEach(library.items) { item in
-                    RowItem(item: item)
-                }
-            } header: {
-                if let header = library.header {
-                    Text(header)
-                }
-            } footer: {
-                if let footer = library.footer {
-                    Text(footer)
-                }
+        Section {
+            ForEach(library.items) { item in
+                RowItem(item: item)
             }
-            #if !os(macOS)
-            .navigationBarTitle("Acknowledgements")
-            #endif
+        } header: {
+            if let header = library.header {
+                Text(header)
+            }
+        } footer: {
+            if let footer = library.footer {
+                Text(footer)
+            }
         }
     }
-    
+
     /// View that displays a row in a list of acknowledgements.
     public struct RowItem: View {
         public let item: AcknowLibrary.Item
@@ -46,10 +41,12 @@ public struct AcknowLibraryView: View {
                 } label: {
                     label
                 }
-            } else if let repository = item.reposity,
+            } else if let repository = item.repository,
                       canOpenRepository(for: repository) {
                 Button {
+                    #if os(iOS)
                     UIApplication.shared.open(repository)
+                    #endif
                 } label: {
                     HStack {
                         label.foregroundColor(.primary)
@@ -61,7 +58,7 @@ public struct AcknowLibraryView: View {
                 label
             }
         }
-        
+
         private var label: some View {
             VStack(alignment: .leading) {
                 Text(item.title)
@@ -89,24 +86,23 @@ public struct AcknowLibraryView: View {
     }
 }
 
-struct AcknowLibraryView_Previews: PreviewProvider {
+struct AcknowLibrarySection_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AcknowLibraryView(library: .preview)
+            AcknowLibrarySection(library: .preview)
         }
     }
 }
 
-
-struct AcknowLibraryView_RowItem_Previews: PreviewProvider {
+struct AcknowLibrarySection_RowItem_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             List {
-                AcknowLibraryView.RowItem(item: .init(title: "Demo", text: "License Content", author: "Kyle-Ye", license: .mit))
-                AcknowLibraryView.RowItem(item: .init(title: "Demo", text: "License Content", author: "Kyle-Ye"))
-                AcknowLibraryView.RowItem(item: .init(title: "Demo", text: "License Content", license: .apache))
-                AcknowLibraryView.RowItem(item: .init(title: "Demo", reposity: URL(string: "https://github.com/Kyle-Ye/AcknowKit")))
-                AcknowLibraryView.RowItem(item: .init(title: "Demo", reposity: URL(string: "git@github.com:Kyle-Ye/AcknowKit.git")))
+                AcknowLibrarySection.RowItem(item: .init(title: "Demo", text: "License Content", author: "Kyle-Ye", license: .mit))
+                AcknowLibrarySection.RowItem(item: .init(title: "Demo", text: "License Content", author: "Kyle-Ye"))
+                AcknowLibrarySection.RowItem(item: .init(title: "Demo", text: "License Content", license: .apache))
+                AcknowLibrarySection.RowItem(item: .init(title: "Demo", repository: URL(string: "https://github.com/Kyle-Ye/AcknowKit")))
+                AcknowLibrarySection.RowItem(item: .init(title: "Demo", repository: URL(string: "git@github.com:Kyle-Ye/AcknowKit.git")))
             }
         }
     }

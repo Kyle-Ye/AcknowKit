@@ -5,7 +5,7 @@ AcknowKit provide a SwiftUI interface to add acknowledgements easily.
 ## TODO
 
 - [ ] Add SwiftPM Plugin to automatic find Cocoapods & SPM dependency's license
-- [ ] Add default style for author, license and reposity in AcknowView.
+- [ ] Add default style for author, license and repository in AcknowView.
 - [ ] Add `AcknowViewStyle` for customatization of the above style.
 
 ## Credits

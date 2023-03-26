@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "AcknowKit",
-    platforms: [.iOS(.v16), .macOS(.v13), .watchOS(.v9)],
+    platforms: [.iOS(.v16), .macOS(.v13), .macCatalyst(.v13), .watchOS(.v9)],
     products: [
         .library(
             name: "AcknowKit",

@@ -9,12 +9,12 @@ import Foundation
 
 extension AcknowLibrary {
     public struct Item {
-        public init(title: String, text: String? = nil, author: String? = nil, license: License? = nil, reposity: URL? = nil) {
+        public init(title: String, text: String? = nil, author: String? = nil, license: License? = nil, repository: URL? = nil) {
             self.title = title
             self.text = text
             self.author = author
             self.license = license
-            self.reposity = reposity
+            self.repository = repository
         }
 
         /// The name of the library
@@ -29,14 +29,13 @@ extension AcknowLibrary {
         /// The license type of the library
         public let license: License?
 
-        /// The reposity URL of the library's source code
-        public let reposity: URL?
+        /// The repository URL of the library's source code
+        public let repository: URL?
     }
 }
 
 extension AcknowLibrary.Item: Hashable {}
 
 extension AcknowLibrary.Item: Identifiable {
-    public var id: String { title }
     public var id: Int { hashValue }
 }

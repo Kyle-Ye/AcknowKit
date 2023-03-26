@@ -32,12 +32,12 @@ extension AcknowLibrary.Item {
     SOFTWARE
     """
 
-    static let itemComplete = AcknowLibrary.Item(title: "AcknowKit-Full", text: text, author: "Kyle-Ye", license: .mit, reposity: URL(string: "https://github.com/Kyle-Ye/AcknowKit"))
+    static let itemComplete = AcknowLibrary.Item(title: "AcknowKit-Full", text: text, author: "Kyle-Ye", license: .mit, repository: URL(string: "https://github.com/Kyle-Ye/AcknowKit"))
     static let itemEmpty = AcknowLibrary.Item(title: "AcknowKit-Empty")
     static let itemText = AcknowLibrary.Item(title: "AcknowKit-OnlyText", text: text)
     static let itemAuthor = AcknowLibrary.Item(title: "AcknowKit-OnlyAuthor", author: "Kyle-Ye")
     static let itemLicense = AcknowLibrary.Item(title: "AcknowKit-OnlyLicense", license: .mit)
-    static let itemReposity = AcknowLibrary.Item(title: "AcknowKit-OnlyReposity", reposity: URL(string: "https://github.com/Kyle-Ye/AcknowKit"))
+    static let itemRepository = AcknowLibrary.Item(title: "AcknowKit-OnlyRepository", repository: URL(string: "https://github.com/Kyle-Ye/AcknowKit"))
 }
 
 extension [AcknowLibrary.Item] {
@@ -46,6 +46,6 @@ extension [AcknowLibrary.Item] {
         .itemText,
         .itemAuthor,
         .itemLicense,
-        .itemReposity,
+        .itemRepository,
     ]
 }

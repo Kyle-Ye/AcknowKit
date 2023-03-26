@@ -27,14 +27,35 @@ public struct AcknowLibraryItemView: View {
                 Text(text)
                     .font(.body)
                     .padding()
-                    #if os(macOS)
+                #if os(macOS)
                     .copyable([text])
-                    #endif
+                #endif
+            }
+        }
+        .toolbar {
+            if let repository = item.repository,
+               canOpenRepository(for: repository) {
+                ToolbarItem(id: "open-link") {
+                    Button {
+                        #if os(iOS)
+                        UIApplication.shared.open(repository)
+                        #endif
+                    } label: {
+                        Label("Open RepoLink", systemImage: "link")
+                    }
+                }
             }
         }
         #if !os(macOS)
         .navigationBarTitle(item.title)
         #endif
+    }
+
+    private func canOpenRepository(for url: URL) -> Bool {
+        guard let scheme = url.scheme else {
+            return false
+        }
+        return scheme == "http" || scheme == "https"
     }
 }
 
@@ -46,7 +67,7 @@ struct AcknowLibraryItemView_Previews: PreviewProvider {
         NavigationStack {
             AcknowLibraryItemView(item: .itemEmpty)
         }
-        
+
         NavigationStack {
             AcknowLibraryItemView(item: .init(title: "Demo", text: "Demo Content"))
         }
