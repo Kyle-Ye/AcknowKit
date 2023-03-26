@@ -8,7 +8,7 @@
 import Foundation
 
 /// A type that represents an open source license type
-public struct License: RawRepresentable {
+public struct License: RawRepresentable, Hashable {
     public init(rawValue: String) {
         self.rawValue = rawValue
     }

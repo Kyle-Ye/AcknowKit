@@ -34,7 +34,9 @@ extension AcknowLibrary {
     }
 }
 
+extension AcknowLibrary.Item: Hashable {}
 
 extension AcknowLibrary.Item: Identifiable {
     public var id: String { title }
+    public var id: Int { hashValue }
 }
