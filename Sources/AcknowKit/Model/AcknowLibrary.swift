@@ -5,11 +5,11 @@
 //  Created by Kyle on 2023/3/26.
 //
 
-import Foundation
+import SwiftUI
 
 /// An acknowledgements library with an array of `AcknowLibraryItem` with optional header and footer texts.
 public struct AcknowLibrary {
-    public init(items: [Item], header: String? = nil, footer: String? = nil) {
+    public init(items: [Item], header: LocalizedStringKey? = nil, footer: LocalizedStringKey? = nil) {
         self.items = items
         self.header = header
         self.footer = footer
@@ -19,10 +19,10 @@ public struct AcknowLibrary {
     public var items: [Item]
 
     /// Header text to be displayed above the list of the acknowledgements.
-    public let header: String?
+    public let header: LocalizedStringKey?
 
     /// Footer text to be displayed bolow the list of the acknowledgements.
-    public let footer: String?
+    public let footer: LocalizedStringKey?
 }
 
 extension AcknowLibrary {
