@@ -18,16 +18,12 @@ public struct AcknowLibraryList: View {
         List {
             AcknowLibrarySection(library: library)
         }
-        #if !os(macOS)
-        .navigationBarTitle("Acknowledgements")
-        #endif
+        .navigationTitle("Acknowledgements")
     }
 }
 
-struct AcknowLibraryList_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AcknowLibraryList(library: .preview)
-        }
+#Preview {
+    NavigationStack {
+        AcknowLibraryList(library: .preview)
     }
 }

@@ -16,6 +16,8 @@ public struct AcknowLibraryItemView: View {
         self.item = item
     }
 
+    @Environment(\.openURL) private var openURL
+
     public var body: some View {
         ScrollView {
             #if os(macOS)
@@ -35,20 +37,16 @@ public struct AcknowLibraryItemView: View {
         .toolbar {
             if let repository = item.repository,
                canOpenRepository(for: repository) {
-                ToolbarItem(id: "open-link") {
+                ToolbarItem(id: "open-link", placement: .primaryAction) {
                     Button {
-                        #if os(iOS)
-                        UIApplication.shared.open(repository)
-                        #endif
+                        openURL(repository)
                     } label: {
                         Label("Open RepoLink", systemImage: "link")
                     }
                 }
             }
         }
-        #if !os(macOS)
-        .navigationBarTitle(item.title)
-        #endif
+        .navigationTitle(item.title)
     }
 
     private func canOpenRepository(for url: URL) -> Bool {
@@ -59,17 +57,20 @@ public struct AcknowLibraryItemView: View {
     }
 }
 
-struct AcknowLibraryItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AcknowLibraryItemView(item: .itemComplete)
-        }
-        NavigationStack {
-            AcknowLibraryItemView(item: .itemEmpty)
-        }
+#Preview("Complete") {
+    NavigationStack {
+        AcknowLibraryItemView(item: .itemComplete)
+    }
+}
 
-        NavigationStack {
-            AcknowLibraryItemView(item: .init(title: "Demo", text: "Demo Content"))
-        }
+#Preview("Empty") {
+    NavigationStack {
+        AcknowLibraryItemView(item: .itemEmpty)
+    }
+}
+
+#Preview("Demo") {
+    NavigationStack {
+        AcknowLibraryItemView(item: .init(title: "Demo", text: "Demo Content"))
     }
 }
