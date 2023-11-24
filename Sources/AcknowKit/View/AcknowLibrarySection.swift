@@ -86,24 +86,20 @@ public struct AcknowLibrarySection: View {
     }
 }
 
-struct AcknowLibrarySection_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AcknowLibrarySection(library: .preview)
-        }
+#Preview {
+    NavigationStack {
+        AcknowLibrarySection(library: .preview)
     }
 }
 
-struct AcknowLibrarySection_RowItem_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            List {
-                AcknowLibrarySection.RowItem(item: .init(title: "Demo", text: "License Content", author: "Kyle-Ye", license: .mit))
-                AcknowLibrarySection.RowItem(item: .init(title: "Demo", text: "License Content", author: "Kyle-Ye"))
-                AcknowLibrarySection.RowItem(item: .init(title: "Demo", text: "License Content", license: .apache))
-                AcknowLibrarySection.RowItem(item: .init(title: "Demo", repository: URL(string: "https://github.com/Kyle-Ye/AcknowKit")))
-                AcknowLibrarySection.RowItem(item: .init(title: "Demo", repository: URL(string: "git@github.com:Kyle-Ye/AcknowKit.git")))
-            }
-        }
+#Preview {
+    NavigationStack {
+        Form {
+            AcknowLibrarySection.RowItem(item: .init(title: "Demo", text: "License Content", author: "Kyle-Ye", license: .mit))
+            AcknowLibrarySection.RowItem(item: .init(title: "Demo", text: "License Content", author: "Kyle-Ye"))
+            AcknowLibrarySection.RowItem(item: .init(title: "Demo", text: "License Content", license: .apache))
+            AcknowLibrarySection.RowItem(item: .init(title: "Demo", repository: URL(string: "https://github.com/Kyle-Ye/AcknowKit")))
+            AcknowLibrarySection.RowItem(item: .init(title: "Demo", repository: URL(string: "git@github.com:Kyle-Ye/AcknowKit.git")))
+        }.formStyle(.grouped)
     }
 }
