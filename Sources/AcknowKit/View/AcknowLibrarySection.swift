@@ -33,6 +33,7 @@ public struct AcknowLibrarySection: View {
     /// View that displays a row in a list of acknowledgements.
     public struct RowItem: View {
         public let item: AcknowLibrary.Item
+        @Environment(\.openURL) private var openURL
 
         public var body: some View {
             if let _ = item.text {
@@ -43,11 +44,7 @@ public struct AcknowLibrarySection: View {
                 }
             } else if let repository = item.repository,
                       canOpenRepository(for: repository) {
-                Button {
-                    #if os(iOS)
-                    UIApplication.shared.open(repository)
-                    #endif
-                } label: {
+                Link(destination: repository) {
                     HStack {
                         label.foregroundColor(.primary)
                         Spacer()
